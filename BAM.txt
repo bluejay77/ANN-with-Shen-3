@@ -1,0 +1,216 @@
+I decided to post in this group one more demo of doing ANNs with Shen.
+
+This ANN has been implemented with vectors, later on the author
+decided to use lists.
+
+This one is the Bidirectional Associative Memory.  The ANN associates
+a list of X(i) values with a list of Y(i) values, to the both
+directions, ie. X(i) ==> Y(i) and Y(i) ==> X(i).
+
+See the George F Luger textbook on Pages 460 -->.
+
+Below is a sample run.  The reader really needs the textbook to fully
+understand everything that is going on.  Yes, and there is there the
+little typo I made: threshold pro "treshold".
+
+So this ANN business is going to be one of the first commmercial
+applications of the SP.
+
+
+------------------------------------------------------------
+
+antti@antti-HP-630-Notebook-PC:~/ShenANN$ ./Shen
+
+Shen, copyright (C) 2010-2015 Mark Tarver
+www.shenlanguage.org, Shen 19.2
+running under Common Lisp, implementation: CLisp
+port 1.9 ported by Mark Tarver
+
+
+(0-) (load "defstruct.shen")
+defstruct.type#struct-type
+defstruct.char-upcase
+defstruct.string-capitalize
+defstruct.sym-capitalize
+defstruct.slot-type
+defstruct.slots-types
+defstruct.slots-defs
+defstruct.datatypes
+defstruct.accessors
+defstruct.setters
+defstruct.constructor-type
+defstruct.constr-init
+defstruct.constructor
+defstruct.struct-aux
+defstruct-macro
+
+run time: 0.8000000007450581 secs
+loaded
+
+(1-) (load "tc_for.shen")
+for-expand
+for-macro
+
+run time: 0.07599997520446777 secs
+loaded
+
+(2-) (load "array.shen")
+outer-product
+scalar-mult
+output-array
+array-sum
+transpose
+output-array-v
+
+run time: 0.30400002002716064 secs
+loaded
+
+(3-) (load "BAM.shen")
+type#bam
+mk-bam
+bam-outputs-vec->
+bam-nr-outputs->
+bam-neuron-output->
+bam-treshold-function->
+bam-activation-level->
+bam-weights-vec->
+bam-inputs-vec->
+bam-nr-inputs->
+bam-neuron-name->
+bam-outputs-vec
+bam-nr-outputs
+bam-neuron-output
+bam-treshold-function
+bam-activation-level
+bam-weights-vec
+bam-inputs-vec
+bam-nr-inputs
+bam-neuron-name
+[]
+add-neuron-to-oblist
+treshold
+transfer-function
+activation-level
+activation-level-h
+<"X1" 3 <... ... ...> <... ... ...> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X2" 3 <... ... ...> <... ... ...> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X3" 3 <... ... ...> <... ... ...> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X4" 3 <... ... ...> <... ... ...> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"Y1" 4 <... ... ... ...> <... ... ... ...> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"Y2" 4 <... ... ... ...> <... ... ... ...> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"Y3" 4 <... ... ... ...> <... ... ... ...> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+<(@p <1 -1 -1 -1> <1 1 1>) (@p <-1 -1 -1 1> <1 -1 1>)>
+<<1 -1 -1 -1> <1 -1 -1 -1> <1 -1 -1 -1>>
+<<-1 -1 -1 1> <1 1 1 -1> <-1 -1 -1 1>>
+<<0 -2 -2 0> <2 0 0 -2> <0 -2 -2 0>>
+<<0 2 0> <-2 0 -2> <-2 0 -2> <0 -2 0>>
+
+<<0 -2 -2 0>
+ <2 0 0 -2>
+ <0 -2 -2 0>
+>
+[]
+
+<<0 2 0>
+ <-2 0 -2>
+ <-2 0 -2>
+ <0 -2 0>
+>
+[]
+<"Y1" 4 <... ... ... ...> <0 -2 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"Y2" 4 <... ... ... ...> <2 0 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"Y3" 4 <... ... ... ...> <0 -2 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"X1" 3 <... ... ...> <0 2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X2" 3 <... ... ...> <-2 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X3" 3 <... ... ...> <-2 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X4" 3 <... ... ...> <0 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X1" 3 <... ... ...> <0 2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X1" 3 <... ... ...> <0 2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <(@p "Y1" 1) (@p "Y2" 1) (@p "Y3" 1)>>
+<"X2" 3 <... ... ...> <-2 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X2" 3 <... ... ...> <-2 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <(@p "Y1" 2) (@p "Y2" 2) (@p "Y3" 2)>>
+<"X3" 3 <... ... ...> <-2 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X3" 3 <... ... ...> <-2 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <(@p "Y1" 3) (@p "Y2" 3) (@p "Y3" 3)>>
+<"X4" 3 <... ... ...> <0 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <... ... ...>>
+<"X4" 3 <... ... ...> <0 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 3 <(@p "Y1" 4) (@p "Y2" 4) (@p "Y3" 4)>>
+<"Y1" 4 <... ... ... ...> <0 -2 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"Y1" 4 <... ... ... ...> <0 -2 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <(@p "X1" 1) (@p "X2" 1) (@p "X3" 1) (@p "X4" 1)>>
+<"Y2" 4 <... ... ... ...> <2 0 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"Y2" 4 <... ... ... ...> <2 0 0 -2> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <(@p "X1" 2) (@p "X2" 2) (@p "X3" 2) (@p "X4" 2)>>
+<"Y3" 4 <... ... ... ...> <0 -2 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <... ... ... ...>>
+<"Y3" 4 <... ... ... ...> <0 -2 -2 0> 0 #<FUNCTION LAMBDA (V1810) #'(LAMBDA (V1811) (treshold V1810 V1811))> 0 4 <(@p "X1" 3) (@p "X2" 3) (@p "X3" 3) (@p "X4" 3)>>
+send-outputs
+find-neuron
+find-neuron-h
+test-bam-x
+list2vec
+list2vec-h
+test-bam-y
+
+run time: 2.6360000371932983 secs
+loaded
+
+(4-) (test-bam-x)  \\ See the x1 <-> y1, x2 <-> y2 values Luger p. 460
+
+Give a sequence of 4 Xi neuron values: 1 -1 -1 -1
+
+Numbers: [1 -1 -1 -1]
+
+Vector: <1 -1 -1 -1>
+
+
+Output of ANN: [1 1 1]
+[]
+
+(5-) (test-bam-y)
+
+Give a sequence of 3 Yi neuron values: 1 1 1
+
+Numbers: [1 1 1]
+
+Vector: <1 1 1>
+
+
+Output of ANN: [1 -1 -1 -1]
+[]
+
+(6-) (test-bam-x)
+
+Give a sequence of 4 Xi neuron values: -1 -1 -1 1
+
+Numbers: [-1 -1 -1 1]
+
+Vector: <-1 -1 -1 1>
+
+
+Output of ANN: [1 -1 1]
+[]
+
+(7-) (test-bam-y)
+
+Give a sequence of 3 Yi neuron values: 1 -1 1
+
+Numbers: [1 -1 1]
+
+Vector: <1 -1 1>
+
+
+Output of ANN: [-1 -1 -1 1]
+[]
+
+(8-) (QUIT)
+antti@antti-HP-630-Notebook-PC:~/ShenANN$
+
+------------------------------------------------------------
+
+
+This one is here as one more example of the (here, non-proprietary)
+techniques to implement ANNs with Shen.
+
+
